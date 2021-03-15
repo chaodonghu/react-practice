@@ -99,13 +99,14 @@
   <body>
     <div id="div" class="header">
       <h2>TODO LIST</h2>
-      <input type="text" id="input" placeholder="...Title of TODO" />
+      <input type="text" id="input" placeholder="...Create a TODO" />
       <span onclick="newElement()" class="addBtn">Add</span>
     </div>
 
     <ul id="my_todo_list">
       <li>Go to the gym</li>
       <li>Buy groceries</li>
+      <li>Do well on coding interview</li>
     </ul>
   </body>
 
@@ -114,29 +115,50 @@
     const nodeList = document.getElementsByTagName('li');
     for (let i = 0; i < nodeList.length; i++) {
       let span = document.createElement('span');
-      let text = document.createTextNode("\u00D7");
+      let closeSymbol = document.createTextNode("\u00D7");
 
       span.className = 'close';
-      span.appendChild(text);
+      span.appendChild(closeSymbol);
+      nodeList[i].className = 'item';
       nodeList[i].appendChild(span);
     }
 
-    <!-- click on the close button to hide the current list item -->
-    const close = document.getElementsByClassName("close");
-    for (let i = 0; i < close.length; i++) {
-      close[i].onclick = ((e) => {
-        const clickedItem = event.target.parentNode;
-        clickedItem.style.display = "none";
-      })
-    }
-
-    <!-- add a checked symbol when clicking on a list item -->
+    <!-- add a checked symbol when clicking on a list item, delete an item when clicking close -->
     const list = document.querySelector('ul');
     list.addEventListener('click', (e) => {
-      console.log('e', e.target.tagName);
       if (e.target.tagName === 'LI') {
         e.target.classList.toggle('checked');
       }
+
+      if (e.target.className === 'close') {
+        const clickedItem = e.target.parentNode;
+        clickedItem.style.display = "none";
+      }
     }, false);
+
+
+    <!-- Create a new list item when clicking on the "add" button -->
+    const newElement = () => {
+      let li = document.createElement('li');
+      let inputValue = document.getElementById('input').value;
+      let text = document.createTextNode(inputValue);
+      li.appendChild(text);
+
+      // error handling on empty input
+      if (inputValue === '') {
+        alert('You must write something');
+      } else {
+        // if input is not empty then append the child
+        document.getElementById('my_todo_list').appendChild(li);
+      }
+      // clear the input after we are done
+      document.getElementById('input').value = '';
+
+      let span = document.createElement("SPAN");
+      let txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
+    }
   </script>
 </html>
