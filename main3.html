@@ -54,14 +54,15 @@
 
   <body>
     <div class="app">
+      <form id="todo-form">
+        <input type="text" id="todo-input" />
+      </form>
+      <h4 id="progress"><span /></h4>
       <ul id="todo-list">
         <li class="todo">Go to the gym</li>
         <li class="todo">Buy groceries</li>
         <li class="todo">Do well on coding interview</li>
       </ul>
-      <form id="todo-form">
-        <input type="text" id="todo-input" />
-      </form>
     </div>
   </body>
 
@@ -77,25 +78,50 @@
       node.appendChild(span);
     }
 
+    // update progress
+    const updateProgress = () => {
+      // get all completed tasks with the task name
+      const completeTasks = document.getElementsByClassName("todo checked");
+      // get the progress text node
+      const progressTextNode = document.querySelector("#progress")
+        .childNodes[0];
+      // get the parent node
+      const parentNode = document.querySelector("h4");
+
+      const progressText = document.createTextNode(
+        `${liNodes.length - completeTasks.length} out of ${
+          liNodes.length
+        } remaining tasks`
+      );
+      parentNode.replaceChild(progressText, progressTextNode);
+    };
+
+    // call update progress on page load
+    updateProgress();
+
     // add a checked symbol when clicking on a list item, delete an item when clicking close
     const list = document.querySelector("#todo-list");
     list.addEventListener("click", (e) => {
-      if (e.target.className === "todo") {
+      if (e.target.className.includes("todo")) {
         e.target.classList.toggle("checked");
       }
 
-      if (e.target.className === "close") {
+      if (e.target.className.includes("close")) {
         const clickedItem = e.target.parentNode;
-        clickedItem.classList.toggle("closed");
+        clickedItem.remove();
       }
+
+      updateProgress();
     });
 
+    // add todos to the list
     const addTodo = (inputValue) => {
       let liNode = document.createElement("li");
       let text = document.createTextNode(inputValue);
       liNode.className = "todo";
       liNode.appendChild(text);
 
+      // add close button to newly added todos
       let span = document.createElement("span");
       let closeSymbol = document.createTextNode("\u00D7");
       span.className = "close";
@@ -103,8 +129,10 @@
       liNode.appendChild(span);
 
       document.getElementById("todo-list").appendChild(liNode);
+      updateProgress();
     };
 
+    // Handling of form on submit
     const form = document.querySelector("#todo-form");
     // Add a submit event listener
     form.addEventListener("submit", (event) => {

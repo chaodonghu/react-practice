@@ -1,0 +1,45 @@
+.app {
+  background: #209cee;
+  height: 100vh;
+  padding: 30px;
+}
+
+.todo-list {
+  background: #e8e8e8;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.todo {
+  align-items: center;
+  background: #fff;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding: 3px 10px;
+}
+
+.todo.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.todo:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+}
