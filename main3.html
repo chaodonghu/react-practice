@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .app {
+      background: #209cee;
+      height: 100vh;
+      padding: 30px;
+    }
+
+    #todo-list {
+      background: #e8e8e8;
+      border-radius: 4px;
+      padding: 5px;
+    }
+
+    .todo {
+      align-items: center;
+      background: #fff;
+      border-radius: 3px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      padding: 3px 10px;
+    }
+
+    .todo.checked {
+      background: #888;
+      color: #fff;
+      text-decoration: line-through;
+    }
+
+    .todo.closed {
+      display: none;
+    }
+
+    .todo:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      border: 1px solid #e8e8e8;
+    }
+  </style>
+
+  <body>
+    <div class="app">
+      <ul id="todo-list">
+        <li class="todo">Go to the gym</li>
+        <li class="todo">Buy groceries</li>
+        <li class="todo">Do well on coding interview</li>
+      </ul>
+      <form id="todo-form">
+        <input type="text" id="todo-input" />
+      </form>
+    </div>
+  </body>
+
+  <script>
+    // Add close buttons to already generated todos
+    const liNodes = document.getElementsByClassName("todo");
+    for (let node of liNodes) {
+      let span = document.createElement("span");
+      let closeSymbol = document.createTextNode("\u00D7");
+
+      span.className = "close";
+      span.appendChild(closeSymbol);
+      node.appendChild(span);
+    }
+
+    // add a checked symbol when clicking on a list item, delete an item when clicking close
+    const list = document.querySelector("#todo-list");
+    list.addEventListener("click", (e) => {
+      if (e.target.className === "todo") {
+        e.target.classList.toggle("checked");
+      }
+
+      if (e.target.className === "close") {
+        const clickedItem = e.target.parentNode;
+        clickedItem.classList.toggle("closed");
+      }
+    });
+
+    const addTodo = (inputValue) => {
+      let liNode = document.createElement("li");
+      let text = document.createTextNode(inputValue);
+      liNode.className = "todo";
+      liNode.appendChild(text);
+
+      let span = document.createElement("span");
+      let closeSymbol = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(closeSymbol);
+      liNode.appendChild(span);
+
+      document.getElementById("todo-list").appendChild(liNode);
+    };
+
+    const form = document.querySelector("#todo-form");
+    // Add a submit event listener
+    form.addEventListener("submit", (event) => {
+      // prevent page refresh on form submission
+      event.preventDefault();
+      // select the text input
+      const input = document.querySelector("#todo-input");
+
+      // Get the value of the input and remove whitespace
+      const inputValue = input.value.trim();
+      if (inputValue === "") {
+        alert("You must write something");
+      } else {
+        addTodo(inputValue);
+        input.value = "";
+        input.focus();
+      }
+    });
+  </script>
+</html>
