@@ -67,17 +67,6 @@
   </body>
 
   <script>
-    // Add close buttons to already generated todos
-    const liNodes = document.getElementsByClassName("todo");
-    for (let node of liNodes) {
-      let span = document.createElement("span");
-      let closeSymbol = document.createTextNode("\u00D7");
-
-      span.className = "close";
-      span.appendChild(closeSymbol);
-      node.appendChild(span);
-    }
-
     // update progress
     const updateProgress = () => {
       // get all completed tasks with the task name
@@ -98,6 +87,17 @@
 
     // call update progress on page load
     updateProgress();
+
+    // Add close buttons to already generated todos
+    const liNodes = document.getElementsByClassName("todo");
+    for (let node of liNodes) {
+      let span = document.createElement("span");
+      let closeSymbol = document.createTextNode("\u00D7");
+
+      span.className = "close";
+      span.appendChild(closeSymbol);
+      node.appendChild(span);
+    }
 
     // add a checked symbol when clicking on a list item, delete an item when clicking close
     const list = document.querySelector("#todo-list");
