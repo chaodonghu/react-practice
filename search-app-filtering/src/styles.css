@@ -1,0 +1,24 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.button {
+  border: 1px solid rgb(22, 82, 240);
+  border-radius: 4px;
+  background-color: rgb(22, 82, 240);
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 12px;
+}
+
+.active-button {
+  border: 1px solid rgb(22, 82, 240);
+  border-radius: 4px;
+  background-color: RED;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 12px;
+}
