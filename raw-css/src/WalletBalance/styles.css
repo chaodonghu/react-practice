@@ -1,0 +1,28 @@
+@import "../styles.css";
+
+.block-title {
+  border-bottom: 1px solid var(--transparent-color);
+  font-weight: bold;
+  padding: var(--padding);
+}
+
+.block-headers {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+}
+
+.block-transparent-headers {
+  color: var(--transparent-color);
+  border-bottom: 1px solid var(--transparent-color-2);
+}
+
+.block-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+}
+
+.amount {
+  color: var(--transparent-color);
+}

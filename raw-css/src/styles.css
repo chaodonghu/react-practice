@@ -1,0 +1,40 @@
+:root {
+  --padding: 10px;
+  --main-text-color: white;
+
+  /* colors */
+  --main-button-color: rgb(5, 177, 105);
+  --sidebar-background-color: rgb(6, 13, 19);
+  --transparent-color: #b3b3b3;
+  --transparent-color-2: #f2f2f2;
+  --transparent-color-2: #f2f2f2;
+}
+
+.block {
+  background: var(--sidebar-background-color);
+  padding: var(--padding);
+  width: 30%;
+  color: var(--main-text-color);
+}
+
+.action-button {
+  border: 1px solid var(--transparent-color);
+  background-color: var(--sidebar-background-color);
+  color: var(--transparent-color);
+  cursor: pointer;
+  font-weight: 500;
+  padding: 15px;
+}
+
+.action-button:hover {
+  background: white;
+}
+
+.action-green-button {
+  border: none;
+  background-color: var(--main-button-color);
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px 25px;
+}
