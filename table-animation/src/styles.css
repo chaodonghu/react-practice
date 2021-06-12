@@ -1,0 +1,64 @@
+:root {
+  /* padding */
+  --padding: 10px;
+
+  /* colors */
+  --main-text-color: white;
+  --main-button-color: rgb(5, 177, 105);
+  --main-button-hover: rgb(0, 165, 93);
+  --transparent-color: #b4b4b4;
+}
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+}
+
+.table tr {
+  border: 1px solid rgb(236, 239, 241);
+}
+
+.table thead th {
+  color: var(--transparent-color);
+  padding: var(--padding);
+  text-align: left;
+}
+
+.table tbody td {
+  color: #333;
+  padding: var(--padding);
+}
+
+.buy-button {
+  background-color: var(--main-button-color);
+  border: 1px solid var(--main-button-color);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  padding: var(--padding);
+}
+
+.buy-button:hover {
+  background-color: var(--main-button-hover);
+  border: 1px solid var(--main-button-hover);
+}
+
+.clicked {
+  animation: glowing 1500ms infinite;
+}
+
+@keyframes glowing {
+  0% {
+    background-color: var(--main-button-color);
+    box-shadow: 0 0 3px var(--main-button-color);
+  }
+  50% {
+    background-color: var(--main-button-hover);
+    box-shadow: 0 0 40px var(--main-button-hover);
+  }
+  100% {
+    background-color: var(--main-button-color);
+    box-shadow: 0 0 3px var(--main-button-color);
+  }
+}
